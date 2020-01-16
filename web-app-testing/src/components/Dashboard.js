@@ -1,13 +1,14 @@
 import React from 'react';
 
 
-export default function Dashboard(){
+export default function Dashboard(props){
+    console.log(props.handleBall)
     return (
         <section className='btn-container'>
-            <button>Strike</button>
-            <button>Ball</button>
-            <button>Foul</button>
-            <button>Hit</button>
+            <button onClick={props.handleStrike}>Strike</button>
+            <button onClick={props.handleBall}>Ball</button>
+            <button onClick={props.handleFoul}>Foul</button>
+            <button onClick={props.handleHit}>Hit</button>
         </section>
     )
 }
