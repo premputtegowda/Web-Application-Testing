@@ -3,6 +3,10 @@ import Dashboard from './components/Dashboard';
 import Display from './components/Display';
 import './App.css';
 
+export function foulVal(strikeVal) {
+  return (strikeVal < 2) ? strikeVal + 1 : strikeVal;
+}
+
 function App() {
   const [ball, setBall] = useState(0);
   const [strike, setStrike] = useState(0);
@@ -10,19 +14,23 @@ function App() {
 
 
   const handleBall = () => {
-
-    if ( strike > 1 || ball >  2 ) {
-        alert('4th ball, next batter')
+    
+   
+    
+    if ( ball >=3 ) {
+      alert('4 balls, batter walks')
         setStrike(0)
         setBall(0) 
       } else { 
         setBall(ball => ball +1)
       }
+     
+      
   }
 
   const handleStrike = () => {
 
-    if ( strike > 1 || ball > 3 ) {
+    if ( strike >=2 ) {
        alert('3rd strike,next batter')
         setStrike(0)
         setBall(0) 
@@ -42,14 +50,14 @@ function App() {
   }
 
   const handleHit  = () => {
-    alert("It's a hit")
+    alert("it's a hit")
     setStrike(0)
     setBall(0)
   } 
   return (
     <div className="App">
       <Display ball={ball} strike={strike}/>
-      <Dashboard handleBall = {handleBall} handleStrike = {handleStrike} handleFoul={handleFoul} handleHit={handleHit}/>
+      <Dashboard handleBall = {handleBall} handleStrike = {handleStrike} handleFoul={()=>setStrike(foulVal(strike))} handleHit={handleHit}/>
 
     </div>
   );
